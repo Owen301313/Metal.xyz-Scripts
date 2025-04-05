@@ -79,7 +79,7 @@ library.themes = {
     {
         name = 'Default',
         theme = {
-            ["Accent"]                    = fromrgb(77,136,255);
+            ["Accent"]                    = fromrgb(204, 45, 45);
             ["Background"]                = fromrgb(18,18,18);
             ["Border"]                    = fromrgb(0,0,0);
             ["Border 1"]                  = fromrgb(60,60,60);
@@ -98,8 +98,8 @@ library.themes = {
             ["Option Border 1"]           = fromrgb(50,50,50);
             ["Option Border 2"]           = fromrgb(0,0,0);
             ["Option Background"]         = fromrgb(23,23,23);
-            ["Risky Text"]                = fromrgb(175, 21, 21);
-            ["Risky Text Enabled"]        = fromrgb(255, 41, 41);
+            ["Risky Text"]                = fromrgb(204, 204, 0);
+            ["Risky Text Enabled"]        = fromrgb(255, 255, 0);
         }
     },
     {
@@ -4623,9 +4623,9 @@ function library:CreateSettingsTab(menu)
     creditsSection:AddSeparator({text = 'Owners/Developers'});
     creditsSection:AddText({text = "Antihook owner - flam"})
     creditsSection:AddText({text = "Ghost"})
-    creditsSection:AddSeparator({text = 'UI'});
-    creditsSection:AddText({text = "informant.wtf"})
-    creditsSection:AddText({text = "He is sigma for this UI :)"})
+    creditsSection:AddSeparator({text = 'Friends'});
+    creditsSection:AddText({text = "l - returnloki"})
+    creditsSection:AddText({text = "Gvoxxer - first tester"})
 
 
     configSection:AddBox({text = 'Config Name', flag = 'configinput'})

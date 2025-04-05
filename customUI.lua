@@ -4727,13 +4727,58 @@ function library:CreateSettingsTab(menu)
         library.keyIndicator:SetPosition(newUDim2(library.flags.keybind_indicator_x / 100, 0, library.flags.keybind_indicator_y / 100, 0));    
     end});
 
+    function drawWatermark()
+        -- Check if the watermark is enabled
+        if library.flags.watermark_enabled then
+            local pos = library.flags.watermark_pos
+            local x, y = 0, 0
+    
+            -- Set position based on the selected value
+            if pos == "Top" then
+                x, y = 50, 5  -- Centered at the top
+            elseif pos == "Top Left" then
+                x, y = 5, 5   -- Top-left corner
+            elseif pos == "Top Right" then
+                x, y = 95, 5  -- Top-right corner
+            elseif pos == "Bottom Left" then
+                x, y = 5, 95  -- Bottom-left corner
+            elseif pos == "Bottom Right" then
+                x, y = 95, 95 -- Bottom-right corner
+            elseif pos == "Custom" then
+                -- Use custom X and Y values from sliders
+                x = library.flags.watermark_x
+                y = library.flags.watermark_y
+            end
+    
+            -- Call your custom rendering function (replace `renderText` with your UI rendering code)
+            renderText("Watermark Text", x, y)
+        end
+    end
+    
+    -- Example function to render text at a given position
+    -- Replace this with the actual code for drawing text on your screen/UI
+    function renderText(text, x, y)
+        -- Example of rendering (you would replace this with actual drawing methods in your UI library)
+        print("Rendering watermark at position:", x, y, "with text: " .. text)
+    end
+    
+    -- This function will run when the script is first executed
+    function onExecute()
+        -- Immediately call the drawWatermark function to display it
+        drawWatermark()
+    end
+    
+    -- Initialize UI elements
     mainSection:AddSeparator({text = 'Watermark'})
-    mainSection:AddToggle({text = 'Enabled', flag = 'watermark_enabled'});
+    mainSection:AddToggle({text = 'Enabled', flag = 'watermark_enabled'})
     mainSection:AddList({text = 'Position', flag = 'watermark_pos', selected = 'Top', values = {'Top', 'Top Left', 'Top Right', 'Bottom Left', 'Bottom Right', 'Custom'}, callback = function(val)
-        library.watermark.lock = val;
+        library.watermark.lock = val  -- Lock watermark position based on user choice
     end})
-    mainSection:AddSlider({text = 'Custom X', flag = 'watermark_x', suffix = '%', value = 6.1, min = 0, max = 100, increment = .1});
-    mainSection:AddSlider({text = 'Custom Y', flag = 'watermark_y', suffix = '%', value = 1.2, min = 0, max = 100, increment = .1});
+    mainSection:AddSlider({text = 'Custom X', flag = 'watermark_x', suffix = '%', value = 6.1, min = 0, max = 100, increment = 0.1})
+    mainSection:AddSlider({text = 'Custom Y', flag = 'watermark_y', suffix = '%', value = 1.2, min = 0, max = 100, increment = 0.1})
+    
+    -- Call the onExecute function to display watermark on script start
+    onExecute()
 
     local themeStrings = {};
     for _,v in next, library.themes do
